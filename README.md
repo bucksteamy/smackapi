@@ -1,3 +1,2 @@
 # smackapi
 
-Brigade demo test
