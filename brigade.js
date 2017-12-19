@@ -122,7 +122,7 @@ function dockerJobRunner(config, d) {
     ]
 }
 
-function helmJobRunner (config, h, prodWeight, canaryWeight, deployType, serviceLabel) {
+function helmJobRunner (config, h, prodWeight, canaryWeight, deployType) {
     h.storage.enabled = false
     h.image = "lachlanevenson/k8s-helm:2.7.0"
     h.tasks = [
@@ -134,7 +134,7 @@ function helmJobRunner (config, h, prodWeight, canaryWeight, deployType, service
         "tar -xzf smackapi.tar.gz",        
         "tar -xzf routes.tar.gz",
         `helm upgrade --install smackapi-${deployType} ./smackapi --namespace draftdemo --set api.image=${config.get("apiACRImage")} --set api.imageTag=${config.get("imageTag")} --set api.deployment=smackweb-${deployType} --set api.versionLabel=${deployType}`,
-        `helm upgrade --install microsmack-routes ./routes --namespace draftdemo --set prodLabel=prod --set prodWeight=${prodWeight} --set canaryLabel=new --set canaryWeight=${canaryWeight} --set serviceLabel=${serviceLabel}`
+        `helm upgrade --install microsmack-routes ./routes --namespace draftdemo --set prodLabel=prod --set prodWeight=${prodWeight} --set canaryLabel=new --set canaryWeight=${canaryWeight} --set serviceLabel=${config.get("serviceLabel")}`
     ]
 }
 
