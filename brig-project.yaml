@@ -1,0 +1,15 @@
+project: "bucksteamy/smackapi"
+repository: "github.com/bucksteamy/smackapi"
+cloneURL: "https://github.com/bucksteamy/smackapi.git"
+# Used by GitHub to compute hooks.
+# MAKE SURE YOU CHANGE THIS. It's basically a password.
+sharedSecret: "535b0b62fdf01"
+# this github token will allow brigade to access your repo
+github:
+  token: "274ed99b7d765001d1eaee80aeb470cb392bee2f"
+secrets:
+  acrServer: njeregistry.azurecr.io
+  acrUsername: njeregistry
+  acrPassword: DL2eUmZxcuSXuihH8TIKoymUOpI/TUhn
+  slackWebhook: "https://hooks.slack.com/services/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"
+
