@@ -134,7 +134,7 @@ function helmJobRunner (config, h, prodWeight, canaryWeight, deployType) {
         `wget "https://njechartrepo.blob.core.windows.net/charts/routes?sv=2017-04-17&ss=b&srt=sco&sp=rwdlac&se=2018-12-19T07:50:14Z&st=2017-12-18T23:50:14Z&spr=https&sig=dGebtmipnMBCZk5vau4hw4rwkz7Nd%2FsZoXJhxD6AAGs%3D" -O routes.tar.gz`,
         "tar -xzf smackapi.tar.gz",        
         "tar -xzf routes.tar.gz",
-        `helm upgrade --install smackapi-${deployType} ./smackapi --namespace draftdemo --set api.image=${config.get("apiACRImage")} --set api.imageTag=${config.get("imageTag")} --set api.deployment=smackweb-${deployType} --set api.versionLabel=${deployType}`,
+        `helm upgrade --install smackapi-${deployType} ./smackapi --namespace draftdemo --set api.image=${config.get("apiACRImage")} --set api.imageTag=${config.get("imageTag")} --set api.deployment=smackapi-${deployType} --set api.versionLabel=${deployType}`,
         `helm upgrade --install smackapi-routes ./routes --namespace draftdemo --set prodLabel=prod --set prodWeight=${prodWeight} --set canaryLabel=new --set canaryWeight=${canaryWeight} --set serviceLabel=${config.get("serviceLabel")}`
     ]
 }
