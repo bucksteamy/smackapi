@@ -129,7 +129,7 @@ function helmJobRunner (config, h, prodWeight, canaryWeight, deployType) {
         "cd /src/",
         "apk update",
         "apk add openssl",
-        `wget "https://njechartrepo.blob.core.windows.net/charts/smackapi?sv=2017-04-17&ss=b&srt=sco&sp=rwdlac&se=2018-12-19T07:50:14Z&st=2017-12-18T23:50:14Z&spr=https&sig=dGebtmipnMBCZk5vau4hw4rwkz7Nd%2FsZoXJhxD6AAGs%3D" -O smackweb.tar.gz`,
+        `wget "https://njechartrepo.blob.core.windows.net/charts/smackapi?sv=2017-04-17&ss=b&srt=sco&sp=rwdlac&se=2018-12-19T07:50:14Z&st=2017-12-18T23:50:14Z&spr=https&sig=dGebtmipnMBCZk5vau4hw4rwkz7Nd%2FsZoXJhxD6AAGs%3D" -O smackapi.tar.gz`,
         `wget "https://njechartrepo.blob.core.windows.net/charts/routes?sv=2017-04-17&ss=b&srt=sco&sp=rwdlac&se=2018-12-19T07:50:14Z&st=2017-12-18T23:50:14Z&spr=https&sig=dGebtmipnMBCZk5vau4hw4rwkz7Nd%2FsZoXJhxD6AAGs%3D" -O routes.tar.gz`,
         "tar -xzf smackapi.tar.gz",        
         "tar -xzf routes.tar.gz",
