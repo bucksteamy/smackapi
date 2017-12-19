@@ -51,7 +51,6 @@ events.on("pull_request", (brigadeEvent, project) => {
     brigConfig.set("acrUsername", project.secrets.acrUsername)
     brigConfig.set("acrPassword", project.secrets.acrPassword)
     brigConfig.set("apiImage", "bucksteamy/smackapi")
-    brigConfig.set("serviceLabel", "smackapi")        
     brigConfig.set("gitSHA", brigadeEvent.commit.substr(0,7))
     brigConfig.set("eventType", brigadeEvent.type)
     brigConfig.set("branch", getBranch(gitPayload))
@@ -135,7 +134,7 @@ function helmJobRunner (config, h, prodWeight, canaryWeight, deployType) {
         "tar -xzf smackapi.tar.gz",        
         "tar -xzf routes.tar.gz",
         `helm upgrade --install smackapi-${deployType} ./smackapi --namespace draftdemo --set api.image=${config.get("apiACRImage")} --set api.imageTag=${config.get("imageTag")} --set api.deployment=smackapi-${deployType} --set api.versionLabel=${deployType}`,
-        `helm upgrade --install smackapi-routes ./routes --namespace draftdemo --set prodLabel=prod --set prodWeight=${prodWeight} --set canaryLabel=new --set canaryWeight=${canaryWeight} --set serviceLabel=${config.get("serviceLabel")}`
+        `helm upgrade --install smackapi-routes ./routes --namespace draftdemo --set prodLabel=prod --set prodWeight=${prodWeight} --set canaryLabel=new --set canaryWeight=${canaryWeight} --set serviceLabel=smackapi`
     ]
 }
 
