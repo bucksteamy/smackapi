@@ -1,16 +1,12 @@
-FROM golang:1.7.5 as builder
-WORKDIR /go/src/github.com/bucksteamy/smackapi/
-COPY . .
+FROM golang:1.7.5 
 RUN go get github.com/gorilla/mux
-RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o smackapi .
-
-FROM alpine
+RUN mkdir /app
+ADD . /app/
 WORKDIR /app
-COPY --from=builder /go/src/github.com/bucksteamy/smackapi/ .
 
 ARG VCS_REF
 ARG BUILD_DATE
-ARG VERSION
+ARG IMAGE_TAG_REF
 
 # Metadata
 LABEL org.label-schema.vcs-ref=$VCS_REF \
@@ -25,5 +21,6 @@ ENV GIT_SHA $VCS_REF
 ENV APP_VERSION $VERSION
 ENV IMAGE_BUILD_DATE $BUILD_DATE
 
+RUN go build -o smackapi .
 ENTRYPOINT /app/smackapi
 EXPOSE 8081

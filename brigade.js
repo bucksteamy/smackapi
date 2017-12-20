@@ -9,7 +9,6 @@ events.on("push", (brigadeEvent, project) => {
     brigConfig.set("acrUsername", project.secrets.acrUsername)
     brigConfig.set("acrPassword", project.secrets.acrPassword)
     brigConfig.set("apiImage", "bucksteamy/smackapi")
-    brigConfig.set("serviceLabel", "smackapi")    
     brigConfig.set("gitSHA", brigadeEvent.commit.substr(0,7))
     brigConfig.set("eventType", brigadeEvent.type)
     brigConfig.set("branch", getBranch(gitPayload))
@@ -101,7 +100,7 @@ function goJobRunner(g) {
     g.tasks = [
         "cd /src/",
         "go get github.com/gorilla/mux",
-        "GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o smackapi",
+        "go build -o smackapi .",
         "go test -v"
     ]
 }
