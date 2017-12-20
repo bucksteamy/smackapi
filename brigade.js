@@ -100,7 +100,7 @@ function goJobRunner(g) {
     g.tasks = [
         "cd /src/",
         "go get github.com/gorilla/mux",
-        "go build -o smackapi .",
+        "GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o smackapi",
         "go test -v"
     ]
 }
